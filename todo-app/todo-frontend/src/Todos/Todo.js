@@ -1,4 +1,4 @@
-const Todo = ({ todo, deleteTodo, completeTodo }) => {
+const Todo = ({ key, todo, deleteTodo, completeTodo }) => {
   console.log('todo', todo)
   const onClickDelete = (todo) => () => {
     deleteTodo(todo)
@@ -10,8 +10,8 @@ const Todo = ({ todo, deleteTodo, completeTodo }) => {
 
   const doneInfo = (
     <>
-      <span>This todo is done</span>
-      <span>
+      <span key={"doneText"}>This todo is done</span>
+      <span key={"doneButtons"}>
         <button onClick={onClickDelete(todo)}> Delete </button>
       </span>
     </>
@@ -19,10 +19,10 @@ const Todo = ({ todo, deleteTodo, completeTodo }) => {
 
   const notDoneInfo = (
     <>
-      <span>
+      <span key={"notDoneText"}>
         This todo is not done
       </span>
-      <span>
+      <span key={"notDoneButtons"}>
         <button onClick={onClickDelete(todo)}> Delete </button>
         <button onClick={onClickComplete(todo)}> Set as done </button>
       </span>
@@ -30,8 +30,8 @@ const Todo = ({ todo, deleteTodo, completeTodo }) => {
   )
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '70%', margin: 'auto' }}>
-      <span>
+    <div key={key} style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '70%', margin: 'auto' }}>
+      <span key={todo.text}>
         {todo.text} 
       </span>
       {todo.done ? doneInfo : notDoneInfo}

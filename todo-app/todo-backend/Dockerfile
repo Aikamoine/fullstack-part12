@@ -2,12 +2,10 @@ FROM node:16
 
 WORKDIR /usr/src/app
 
-COPY --chown=node:node . .
+COPY . .
 
-RUN npm ci --only=production
+RUN npm install
 
-ENV DEBUG=todo-backend:*
-
-USER node
+ENV NODE_ENV=production
 
 CMD npm start
